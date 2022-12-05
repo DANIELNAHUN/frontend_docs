@@ -22,8 +22,10 @@
         @click:append="show = !show"
       ></v-text-field>
       <v-card-actions>
+        <v-spacer></v-spacer>
         <v-btn text color="deep-purple accent-4"> Ingresar </v-btn>
         <v-btn text color="blue darken-3"> Crear Usuario </v-btn>
+        <v-spacer></v-spacer>
       </v-card-actions>
     </v-card>
   </div>
