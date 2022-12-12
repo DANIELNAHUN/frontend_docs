@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import FormView from '../views/FormView'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView'
+import MainView from '../views/MainView'
 
 Vue.use(VueRouter)
 
@@ -23,7 +25,17 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginView
-  }
+  },
+  {
+    path: '/main',
+    name: 'main',
+    component: MainView
+  },
+  {
+    path: '/form',
+    name: 'form',
+    component: FormView
+  },
 ]
 
 const router = new VueRouter({

@@ -1,0 +1,83 @@
+<template>
+  <div class="container">
+    <v-card
+    max-width="100%">
+      <v-card-title>Solicitud de Descanso Vacacional</v-card-title>
+      <v-card-text>
+        <v-form>
+          <v-row
+          align="center">
+              <v-text-field
+                v-model="firstname"
+                :counter="10"
+                label="Empresa"
+                required
+              ></v-text-field>
+              <v-text-field
+                v-model="firstname"
+                :counter="10"
+                label="Area"
+                required
+              ></v-text-field>
+          </v-row>
+          <v-row
+          align="center">
+              <v-text-field
+                v-model="firstname"
+                :counter="10"
+                label="Sede"
+                required
+              ></v-text-field>
+              <v-text-field
+                v-model="firstname"
+                :counter="8"
+                label="DNI"
+                required
+              ></v-text-field>
+          </v-row>
+          <v-row
+          align="center">
+              <v-text-field
+                v-model="firstname"
+                :counter="9"
+                label="Celular"
+                required
+              ></v-text-field>
+              <v-text-field
+                v-model="firstname"
+                :counter="10"
+                label="Correo"
+                required
+              ></v-text-field>
+          </v-row>
+          <v-row
+          align="center">
+              <v-text-field
+                v-model="firstname"
+                :counter="9"
+                label="Apellido Paterno"
+                required
+              ></v-text-field>
+              <v-text-field
+                v-model="firstname"
+                :counter="10"
+                label="Apellido Materno"
+                required
+              ></v-text-field>
+              <v-text-field
+                v-model="firstname"
+                :counter="10"
+                label="Nombres"
+                required
+              ></v-text-field>
+          </v-row>
+        </v-form>
+      </v-card-text>
+    </v-card>
+  </div>
+</template>
+<script>
+export default {
+  name: "FormView",
+};
+</script>
