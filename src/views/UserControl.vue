@@ -13,7 +13,7 @@
   </div>
 </template>
 <script>
-import Header from '@/views/HeaderUserControl.vue'
+import Header from '@/components/HeaderUserControl.vue';
 export default {
   name: "UserControl",
   components:{
