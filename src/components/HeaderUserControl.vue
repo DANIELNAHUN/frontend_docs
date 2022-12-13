@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar color="black" dark>
+  <v-toolbar color="primary" dark>
     <v-avatar size="45">
       <v-img src="https://cdn.vuetifyjs.com/images/lists/2.jpg"></v-img>
     </v-avatar>
@@ -15,21 +15,15 @@
         </v-btn>
       </template>
 
-      <v-list>
+      <v-list class="accent text-secondary">
         <v-list-item>
-          <v-list-item-title>Click Me 1</v-list-item-title>
+          <v-list-item-title>Datos de Usuario</v-list-item-title>
         </v-list-item>
-
         <v-list-item>
-          <v-list-item-title>Click Me 2</v-list-item-title>
+          <v-list-item-title>Cambiar Contraseña</v-list-item-title>
         </v-list-item>
-
         <v-list-item>
-          <v-list-item-title>Click Me 3</v-list-item-title>
-        </v-list-item>
-
-        <v-list-item>
-          <v-list-item-title>Click Me 4</v-list-item-title>
+          <v-list-item-title>Cerrar Sesion</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-menu>
