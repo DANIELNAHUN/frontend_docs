@@ -164,7 +164,7 @@ export default {
           text: "ID doc",
           align: "start",
           sortable: true,
-          value: "name",
+          value: "id",
         },
         { text: "Tipo de Documento", value: "type_doc" },
         { text: "Fecha Inicio", value: "fec_i" },
@@ -220,6 +220,7 @@ export default {
     initialize() {
       this.desserts = [
         {
+          id:"1",
           type_doc: "Permiso",
           fec_i: "10-10-22",
           fec_f: "10-10-22",
