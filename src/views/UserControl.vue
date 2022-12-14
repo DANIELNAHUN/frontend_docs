@@ -25,68 +25,95 @@
                   Agregar
                 </v-btn>
               </template>
-              <v-card>
-                <v-dialog>
-                  <template>
-                    <Cards/>
+              <template>
+                <v-dialog v-model="dialog2" max-width="600">
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-card class="mx-auto my-12" max-width="380">
+                      <v-img
+                        height="250"
+                        src="https://www.lidercontab.com/wp-content/uploads/Vacaciones.jpg"
+                      ></v-img>
+                      <v-card-title>Gestion de Permisos</v-card-title>
+                      <v-card-text>Vacaciones</v-card-text>
+                      <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                          color="primary"
+                          dark
+                          class="mb-2"
+                          v-bind="attrs"
+                          v-on="on"
+                          >Ingresar</v-btn
+                        >
+                        <v-btn
+                        color="error"
+                        dark
+                        class="mb-2"
+                        @click="close">
+                          Cerrar
+                        </v-btn>
+                        <v-spacer></v-spacer>
+                      </v-card-actions>
+                    </v-card>
                   </template>
+                  <v-card>
+                    <v-card-title>
+                      <span class="text-h5">{{ formTitle }}</span>
+                    </v-card-title>
+                    <v-card-text>
+                      <v-container>
+                        <v-row>
+                          <v-col cols="12" sm="6" md="4">
+                            <v-text-field
+                              v-model="editedItem.type_doc"
+                              label="Tipo Documento"
+                            ></v-text-field>
+                          </v-col>
+                          <v-col cols="12" sm="6" md="4">
+                            <v-text-field
+                              v-model="editedItem.fec_i"
+                              label="Fecha Inicio"
+                            ></v-text-field>
+                          </v-col>
+                          <v-col cols="12" sm="6" md="4">
+                            <v-text-field
+                              v-model="editedItem.fec_f"
+                              label="Fecha Final"
+                            ></v-text-field>
+                          </v-col>
+                          <v-col cols="12" sm="6" md="4">
+                            <v-text-field
+                              v-model="editedItem.fec_r"
+                              label="Fecha Retorno"
+                            ></v-text-field>
+                          </v-col>
+                          <v-col cols="12" sm="6" md="4">
+                            <v-text-field
+                              v-model="editedItem.desc"
+                              label="Descripcion"
+                            ></v-text-field>
+                          </v-col>
+                          <v-col cols="12" sm="6" md="4">
+                            <v-text-field
+                              v-model="editedItem.estate_doc"
+                              label="Estado Documento"
+                            ></v-text-field>
+                          </v-col>
+                        </v-row>
+                      </v-container>
+                    </v-card-text>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn color="blue darken-1" text @click="close">
+                        Cancel
+                      </v-btn>
+                      <v-btn color="blue darken-1" text @click="save">
+                        Save
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
                 </v-dialog>
-                
-                <!-- <v-card-title>
-                  <span class="text-h5">{{ formTitle }}</span>
-                </v-card-title>
-
-                <v-card-text>
-                  <v-container>
-                    <v-row>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.type_doc"
-                          label="Tipo Documento"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.fec_i"
-                          label="Fecha Inicio"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.fec_f"
-                          label="Fecha Final"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.fec_r"
-                          label="Fecha Retorno"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.desc"
-                          label="Descripcion"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.estate_doc"
-                          label="Estado Documento"
-                        ></v-text-field>
-                      </v-col>
-                    </v-row>
-                  </v-container>
-                </v-card-text>
-
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn color="blue darken-1" text @click="close">
-                    Cancel
-                  </v-btn>
-                  <v-btn color="blue darken-1" text @click="save"> Save </v-btn>
-                </v-card-actions> -->
-              </v-card>
+              </template>
             </v-dialog>
             <v-dialog v-model="dialogDelete" max-width="500px">
               <v-card>
@@ -122,16 +149,15 @@
 </template>
 <script>
 import Header from "@/components/HeaderUserControl.vue";
-import Cards from "@/components/MainCards.vue"
 export default {
   name: "UserControl",
   components: {
     Header,
-    Cards,
   },
   data() {
     return {
       dialog: false,
+      dialog2: false,
       dialogDelete: false,
       headers: [
         {
@@ -178,6 +204,9 @@ export default {
     dialog(val) {
       val || this.close();
     },
+    dialog2(val) {
+      val || this.close();
+    },
     dialogDelete(val) {
       val || this.closeDelete();
     },
@@ -204,7 +233,7 @@ export default {
     editItem(item) {
       this.editedIndex = this.desserts.indexOf(item);
       this.editedItem = Object.assign({}, item);
-      this.dialog = true;
+      this.dialog2 = true;
     },
 
     deleteItem(item) {
@@ -219,6 +248,7 @@ export default {
     },
 
     close() {
+      this.dialog2 = false;
       this.dialog = false;
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
