@@ -45,11 +45,7 @@
                           v-on="on"
                           >Ingresar</v-btn
                         >
-                        <v-btn
-                        color="error"
-                        dark
-                        class="mb-2"
-                        @click="close">
+                        <v-btn color="error" dark class="mb-2" @click="close">
                           Cerrar
                         </v-btn>
                         <v-spacer></v-spacer>
@@ -70,16 +66,54 @@
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="6" md="4">
-                            <v-text-field
-                              v-model="editedItem.fec_i"
-                              label="Fecha Inicio"
-                            ></v-text-field>
+                            <v-menu
+                              v-model="menu2"
+                              :close-on-content-click="false"
+                              :nudge-right="40"
+                              transition="scale-transition"
+                              offset-y
+                              min-width="auto"
+                            >
+                              <template v-slot:activator="{ on, attrs }">
+                                <v-text-field
+                                  v-model="fec_i"
+                                  label="Picker without buttons"
+                                  prepend-icon="mdi-calendar"
+                                  readonly
+                                  v-bind="attrs"
+                                  v-on="on"
+                                ></v-text-field>
+                              </template>
+                              <v-date-picker
+                                v-model="fec_i"
+                                @input="menu2 = false"
+                              ></v-date-picker>
+                            </v-menu>
                           </v-col>
                           <v-col cols="12" sm="6" md="4">
-                            <v-text-field
-                              v-model="editedItem.fec_f"
-                              label="Fecha Final"
-                            ></v-text-field>
+                            <v-menu
+                              v-model="menu2"
+                              :close-on-content-click="false"
+                              :nudge-right="40"
+                              transition="scale-transition"
+                              offset-y
+                              min-width="auto"
+                            >
+                              <template v-slot:activator="{ on, attrs }">
+                                <v-text-field
+                                  v-model="fec_f"
+                                  label="Picker without buttons"
+                                  prepend-icon="mdi-calendar"
+                                  readonly
+                                  v-bind="attrs"
+                                  v-on="on"
+                                ></v-text-field>
+                              </template>
+                              <v-date-picker
+                                v-model="fec_f"
+                                @input="menu2 = false"
+                              ></v-date-picker>
+                            </v-menu>
                           </v-col>
                           <v-col cols="12" sm="6" md="4">
                             <v-text-field
@@ -87,6 +121,7 @@
                               label="Fecha Retorno"
                             ></v-text-field>
                           </v-col>
+
                           <v-col cols="12" sm="6" md="4">
                             <v-text-field
                               v-model="editedItem.desc"
@@ -159,6 +194,8 @@ export default {
       dialog: false,
       dialog2: false,
       dialogDelete: false,
+      menu2: false,
+      date: ["2019-09-10", "2019-09-20"],
       headers: [
         {
           text: "ID doc",
@@ -220,7 +257,7 @@ export default {
     initialize() {
       this.desserts = [
         {
-          id:"1",
+          id: "1",
           type_doc: "Permiso",
           fec_i: "10-10-22",
           fec_f: "10-10-22",
@@ -230,7 +267,6 @@ export default {
         },
       ];
     },
-
     editItem(item) {
       this.editedIndex = this.desserts.indexOf(item);
       this.editedItem = Object.assign({}, item);
@@ -272,6 +308,7 @@ export default {
         this.desserts.push(this.editedItem);
       }
       this.close();
+      this.fullName();
     },
   },
 };
