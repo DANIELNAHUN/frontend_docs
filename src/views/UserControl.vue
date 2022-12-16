@@ -67,7 +67,7 @@
                           </v-col>
                           <v-col cols="12" sm="6" md="4">
                             <v-menu
-                              v-model="menu2"
+                              v-model="menu1"
                               :close-on-content-click="false"
                               :nudge-right="40"
                               transition="scale-transition"
@@ -76,8 +76,8 @@
                             >
                               <template v-slot:activator="{ on, attrs }">
                                 <v-text-field
-                                  v-model="fec_i"
-                                  label="Picker without buttons"
+                                  v-model="editedItem.fec_i"
+                                  label="Fecha Inicio"
                                   prepend-icon="mdi-calendar"
                                   readonly
                                   v-bind="attrs"
@@ -85,8 +85,8 @@
                                 ></v-text-field>
                               </template>
                               <v-date-picker
-                                v-model="fec_i"
-                                @input="menu2 = false"
+                                v-model="editedItem.fec_i"
+                                @input="menu1 = false"
                               ></v-date-picker>
                             </v-menu>
                           </v-col>
@@ -101,8 +101,8 @@
                             >
                               <template v-slot:activator="{ on, attrs }">
                                 <v-text-field
-                                  v-model="fec_f"
-                                  label="Picker without buttons"
+                                  v-model="editedItem.fec_f"
+                                  label="Fecha Final"
                                   prepend-icon="mdi-calendar"
                                   readonly
                                   v-bind="attrs"
@@ -110,18 +110,36 @@
                                 ></v-text-field>
                               </template>
                               <v-date-picker
-                                v-model="fec_f"
+                                v-model="editedItem.fec_f"
                                 @input="menu2 = false"
                               ></v-date-picker>
                             </v-menu>
                           </v-col>
                           <v-col cols="12" sm="6" md="4">
-                            <v-text-field
-                              v-model="editedItem.fec_r"
-                              label="Fecha Retorno"
-                            ></v-text-field>
+                            <v-menu
+                              v-model="menu3"
+                              :close-on-content-click="false"
+                              :nudge-right="40"
+                              transition="scale-transition"
+                              offset-y
+                              min-width="auto"
+                            >
+                              <template v-slot:activator="{ on, attrs }">
+                                <v-text-field
+                                  v-model="editedItem.fec_r"
+                                  label="Fecha Retorno"
+                                  prepend-icon="mdi-calendar"
+                                  readonly
+                                  v-bind="attrs"
+                                  v-on="on"
+                                ></v-text-field>
+                              </template>
+                              <v-date-picker
+                                v-model="editedItem.fec_r"
+                                @input="menu3 = false"
+                              ></v-date-picker>
+                            </v-menu>
                           </v-col>
-
                           <v-col cols="12" sm="6" md="4">
                             <v-text-field
                               v-model="editedItem.desc"
@@ -194,6 +212,7 @@ export default {
       dialog: false,
       dialog2: false,
       dialogDelete: false,
+      menu1: false,
       menu2: false,
       date: ["2019-09-10", "2019-09-20"],
       headers: [
@@ -233,6 +252,9 @@ export default {
   },
   computed: {
     formTitle() {
+      return this.editedIndex === -1 ? "Agregar" : "Editar";
+    },
+    idDoc() {
       return this.editedIndex === -1 ? "Agregar" : "Editar";
     },
   },
